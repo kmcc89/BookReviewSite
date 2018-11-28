@@ -4,12 +4,6 @@
 
 <h2>{{ the_title }}</h2>
 
-<h3>Header 3</h3>
-
-<form action="writeReview">
-    <input type="submit" value="Write a review"/>
-</form>
-
 <table>
 
     <!--HTML to display book reviews - table?
@@ -32,6 +26,10 @@
 	 
 	{% endfor %} 
 	
-</table> 
+</table>
+
+<form action="writeReview">
+    <input type="submit" value="Write a review"/>
+</form>
 
 {% endblock %}
