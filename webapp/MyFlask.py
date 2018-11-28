@@ -2,10 +2,18 @@
 from flask import Flask, render_template, request
 from flask_nav import Nav
 from flask_nav.elements import Navbar, Subgroup, View, Link, Text, Separator
-import mysql.connector
+
+from DBcm import UseDatabase
+
+
 
 app = Flask(__name__)
 nav = Nav(app)
+
+app.config['dbconfig'] = {  'host':'127.0.0.1',
+                            'user':'kevin',
+                            'password':'pass',
+                            'database':'bookreviews',}
 
 #Function to set navigation menu - will show on each page by including in base.html template
 @nav.navigation()
@@ -71,37 +79,16 @@ def confirm_review() -> None:
 #Background runner function to store data in DB
 def log_review(author:str, book:str, rating:str) -> None:
 
-    #Set up config dict with info to connect to DB
-    dbconfig = {'host':'127.0.0.1',
-                'user':'kevin',
-                'password':'pass',
-                'database':'bookreviews',}
+    with UseDatabase(app.config['dbconfig']) as cursor:
+        # Create SQL Statement - dynamic placeholders for values
+        _SQL = """INSERT INTO reviews
+                        (author, book, rating)
+                        values
+                        (%s, %s, %s)"""
 
-    #Import connector - MOVED TO TOP OF PAGE - ONLY HAS TO LOAD ONCE THEN
-    #import mysql.connector
-
-    #Create connection using dict of info
-    conn = mysql.connector.connect(**dbconfig)
-    #Create cursor
-    cursor = conn.cursor()
-
-    #Create SQL Statement - dynamic placeholders for values
-    _SQL = """INSERT INTO reviews
-                (author, book, rating)
-                values
-                (%s, %s, %s)"""
-
-    #Execute the query
-    cursor.execute(_SQL,   (author,
-                            book,
-                            rating))
-
-    #Required steps to finish up - look into further
-    conn.commit()
-    cursor.close()
-    conn.close()
-
-
+        cursor.execute(_SQL, (author,
+                              book,
+                              rating))
 
 nav.init_app(app)
 app.run(debug=True)
