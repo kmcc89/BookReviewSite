@@ -6,19 +6,24 @@
 
 <h3>Header 3</h3>
 
-<form method="POST" action="/log_review">
+<form method="POST" action="/log_request">
 
     <table>
         <p>Use this form to write a book review:</p>
 
         <tr>
             <td>Book author:</td>
-            <td><input name="bookAuthor" type="text" width="60"></td>
+            <td><input name="bookAuthor" type="text" width="60" required></td>
         </tr>
 
         <tr>
             <td>Book Title:</td>
-            <td><input name="bookTitle" type="text" width="60"></td>
+            <td><input name="bookTitle" type="text" width="60" required></td>
+        </tr>
+
+        <tr>
+            <td>Rating:</td>
+            <td><input name="bookRating" type="text" width="60" required></td>
         </tr>
 
         <tr>

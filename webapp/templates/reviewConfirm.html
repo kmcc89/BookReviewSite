@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<h2>{{ the_title }}</h2>
+
+<h3>Header 3</h3>
+
+<p><b>Author: </b>{{ the_author }}</p>
+
+<p><b>Book: </b>{{ the_book }}</p>
+
+<p><b>Rating: </b>{{ the_rating }}</p>
+
+<form action="/confirm_review">
+    <input type="submit" value="Confirm Review">
+</form>
+
+
+{% endblock %}
