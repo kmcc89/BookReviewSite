@@ -1,0 +1,37 @@
+{% extends 'base.html' %} 
+ 
+{% block body %} 
+
+<h2>{{ the_title }}</h2>
+
+<h3>Header 3</h3>
+
+<form action="writeReview">
+    <input type="submit" value="Write a review"/>
+</form>
+
+<table>
+
+    <!--HTML to display book reviews - table?
+        Jinja template variables used to store info
+        For loop used to populate the table-->
+	 <tr>       
+	 
+		{% for row_title in the_row_titles %}
+			<th>{{row_title}}</th>         
+		{% endfor %} 
+		
+	 </tr>     
+
+	{% for log_row in the_data %}         
+	 <tr>             
+		 {% for item in log_row %}                 
+			<td>{{item}}</td>             
+		 {% endfor %}         
+	 </tr>  
+	 
+	{% endfor %} 
+	
+</table> 
+
+{% endblock %}

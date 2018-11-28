@@ -1,0 +1,39 @@
+{% extends 'base.html' %} 
+
+{% block body %}
+
+<h3>Header 3</h3>
+
+ <h2>{{ the_title }}</h2> 
+ 
+ <p>Input fields to allow the user to login</p>
+
+ <form>
+  <div class="imgcontainer">
+   <img src="/static/avatar.png" alt="Avatar" height="80em">
+  </div>
+
+  <div class="container">
+
+   <label><b>Username</b></label>
+   <input type="text" placeholder="Enter Username" name="user_name" required>
+
+   <label><b>Password</b></label>
+   <input type="password" placeholder="Enter Password" name="pass_word" required>
+
+   <button type="submit">Login</button>
+
+   <label>
+    <input type="checkbox" checked="checked" name="remember">Remember me
+   </label>
+  </div>
+
+  <div class="container" style="background-color:#f1f1f1">
+   <button type="button" class="cancelbtn">Cancel</button>
+   <span class="pass_word">Forgot<a href="#"> password?</a> </span>
+  </div>
+
+
+ </form>
+
+{% endblock %}

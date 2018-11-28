@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<h2>{{ the_title }}</h2>
+
+<h3>Header 3</h3>
+
+<form method="POST" action="/log_review">
+
+    <table>
+        <p>Use this form to write a book review:</p>
+
+        <tr>
+            <td>Book author:</td>
+            <td><input name="bookAuthor" type="text" width="60"></td>
+        </tr>
+
+        <tr>
+            <td>Book Title:</td>
+            <td><input name="bookTitle" type="text" width="60"></td>
+        </tr>
+
+        <tr>
+            <td>Review:</td>
+            <td><textarea rows="10" cols="50" name="review_text">Type review here...</textarea></td>
+        </tr>
+    </table>
+    <p>Click submit when finished:</p>
+    <p><input value="Submit" type="submit"></p>
+</form>
+
+{% endblock %}
