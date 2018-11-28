@@ -33,7 +33,19 @@ def show_index() -> 'html':
 
 @app.route('/bookReviews')
 def show_book_reviews() -> 'html':
-    return render_template('bookReviews.html')
+
+    with UseDatabase(app.config['dbconfig']) as cursor:
+        _SQL = """SELECT author, book, rating FROM reviews"""
+
+        cursor.execute(_SQL)
+        contents = cursor.fetchall()
+
+    titles = ('Author', 'Book', 'Rating')
+
+    return render_template('bookReviews.html',
+                           the_title='View Reviews',
+                           the_row_titles=titles,
+                           the_data=contents,)
 
 @app.route('/writeReview')
 def shoe_write_review() -> 'html':
